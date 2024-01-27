@@ -1,5 +1,7 @@
 extends Area2D
 
+enum State {GOOD, BAD, KNIGHT}
+
 @export var start_speed = 100 #Vitesse du messager à l'origine
 var start_velocity # Vecteur vitesse du messager à l'origine
 var velocity # Vecteur vitesse du messager à la frame présente
@@ -14,6 +16,8 @@ var pos_1 : Vector2 #buffer position à t-1
 var pos_2 : Vector2 #buffer position à t
 var screen_size
 
+var state
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size # Récupère la taille de la fenêtre
@@ -23,7 +27,14 @@ func _ready():
 	vecteur_direction = calc_direction()
 	start_velocity = vecteur_direction * start_speed # set la vitesse à l'origine
 	velocity = start_velocity # set la vitesse à la vitesse d'origine
-
+	state = Global.rng.randi_range(0,2)
+	match state:
+		0:
+			$AnimatedSprite2D.animation = "walk" #change to GOOD messager animation
+		1:
+			$AnimatedSprite2D.animation = "walk" #change to BAD messager animation
+		2:
+			$AnimatedSprite2D.animation = "walk" #change to KNIGHT messager animation
 
 func _physics_process(delta):
 	if selected:
@@ -68,3 +79,7 @@ func _input(event): # Quand on relache le clique gauche
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			selected = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()

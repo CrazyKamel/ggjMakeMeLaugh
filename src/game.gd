@@ -4,8 +4,6 @@ var confirmQuit = preload("res://src/ConfirmQuit.tscn")
 var banane = preload("res://src/banane_stuff.tscn")
 var messager = preload('res://src//Messager/messager.tscn')
 
-var rng = RandomNumberGenerator.new()
-
 var child_count
 const bananeNodeName = "Banane"
 const messWidth = 128
@@ -22,10 +20,9 @@ func inst(pos):
 	add_child(instance)
 
 func _timeout() -> void:
-	if rng.randf() < probaSpawn:
-		var border = rng.randi_range(0,1)
-		var y = rng.randi_range(get_window().size.y*0.26 + messHeight/2, get_window().size.y)
-	
+	if Global.rng.randf() < probaSpawn:
+		var border = Global.rng.randi_range(0,1)
+		var y = Global.rng.randi_range(get_window().size.y*0.26 + messHeight/2, get_window().size.y)
 		var x = -messWidth/2 if border == 0 else get_window().size.x + messWidth/2
 		
 		inst(Vector2(x,y))
@@ -33,7 +30,6 @@ func _timeout() -> void:
 		if nbSpawned%20==0:
 			probaSpawn+=0.01
 			print(probaSpawn," ", nbSpawned)
-	
 
 func _init():
 	var timer = Timer.new()

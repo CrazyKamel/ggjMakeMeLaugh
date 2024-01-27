@@ -1,6 +1,8 @@
 extends Node
 
 var current_scene = null
+
+var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var root = get_tree().root
