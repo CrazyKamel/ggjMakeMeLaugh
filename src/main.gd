@@ -1,6 +1,6 @@
 extends Node2D
 
-var messager = preload('res://messager.tscn');
+var messager = preload('res://src/messager.tscn');
 var rng = RandomNumberGenerator.new()
 
 const messWidth = 128

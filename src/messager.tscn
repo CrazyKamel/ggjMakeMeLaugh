@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3dwq2x3hl0en"]
+
+[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="1_8wivi"]
+[ext_resource type="Script" path="res://src/messager.gd" id="2_wh41j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anus0"]
+size = Vector2(128, 128)
+
+[node name="Messager2D" type="CharacterBody2D"]
+script = ExtResource("2_wh41j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8wivi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_anus0")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
