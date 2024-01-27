@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://sasogt5h5jes"]
+[gd_scene load_steps=7 format=3 uid="uid://bukt6wbc4moqv"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_1ccu5"]
-[ext_resource type="PackedScene" path="res://src/banane_stuff.tscn" id="2_mto8x"]
+[ext_resource type="PackedScene" uid="uid://uvguanklbvnk" path="res://src/banane_stuff.tscn" id="2_mto8x"]
+[ext_resource type="Texture2D" uid="uid://c8cfsnwl0g10o" path="res://media/mapex2.png" id="4_b1ob3"]
 
 [sub_resource type="Gradient" id="Gradient_ylerd"]
 
@@ -9,7 +10,7 @@
 gradient = SubResource("Gradient_ylerd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swqa1"]
-size = Vector2(255.886, 0.998879)
+size = Vector2(256, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1ccu5")
@@ -27,6 +28,12 @@ shape = SubResource("RectangleShape2D_swqa1")
 
 [node name="Banane" parent="." instance=ExtResource("2_mto8x")]
 position = Vector2(950, 850)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 1918.0
+offset_bottom = 1086.0
+texture = ExtResource("4_b1ob3")
 
 [connection signal="area_entered" from="Sprite2D2/Area2D" to="Banane" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Sprite2D2/Area2D" to="Banane" method="_on_area_2d_area_exited"]

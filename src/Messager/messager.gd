@@ -58,6 +58,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	if abs((position_visee - self.position).x) < 100 and abs((position_visee - self.position).y) < 100 :
+		get_parent().addLaugh(0.5)
 		self.queue_free()
 
 ### Tools

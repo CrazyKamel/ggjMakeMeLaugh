@@ -3,6 +3,10 @@ extends Node2D
 var confirmQuit = preload("res://src/ConfirmQuit.tscn")
 var banane = preload("res://src/banane_stuff.tscn")
 var messager = preload('res://src//Messager/messager.tscn')
+var hud_preload = preload("res://src/hud.tscn")
+
+var rng = RandomNumberGenerator.new()
+var hud
 
 var child_count
 const bananeNodeName = "Banane"
@@ -13,6 +17,11 @@ var confirmQuitCheck = true
 var probaSpawn = 0.05
 var nbSpawned = 0
 
+func addLaugh(toAdd):
+	hud.addLaugh(toAdd)
+
+func subLaugh(toSub):
+	hud.subLaugh(toSub)
 
 func inst(pos):
 	var instance = messager.instantiate()
@@ -41,11 +50,14 @@ func _init():
 	timer.connect("timeout", self._timeout)
 
 # Called when the node enters the scene tree for the first time.
-func _ready(): 
-	pass
+func _ready():
+	inst(Vector2(600,400))
+	hud = hud_preload.instantiate()
+	add_child(hud)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	hud.subLaugh(probaSpawn/4)
 	pass
 
 func subscribeCancelQuit():
