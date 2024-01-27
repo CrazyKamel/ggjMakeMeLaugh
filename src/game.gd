@@ -10,6 +10,7 @@ var child_count
 const bananeNodeName = "Banane"
 const messWidth = 128
 const messHeight = 128
+var confirmQuitCheck = true
 
 func inst(pos):
 	var instance = messager.instantiate()
@@ -40,11 +41,14 @@ func _ready():
 func _process(_delta):
 	pass
 
+func subscribeCancelQuit():
+	confirmQuitCheck = true
+
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") && confirmQuitCheck:
 		var confirmQuitInstance = confirmQuit.instantiate()
-		print("exit")
 		add_child(confirmQuitInstance)
+		confirmQuitCheck = false
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		inst(get_global_mouse_position())

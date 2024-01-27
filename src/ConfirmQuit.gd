@@ -16,4 +16,5 @@ func _on_yes_pressed():
 
 
 func _on_no_pressed():
+	get_parent().subscribeCancelQuit();
 	self.queue_free()

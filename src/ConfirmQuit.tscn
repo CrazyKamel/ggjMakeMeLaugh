@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccjdnwss55c6u"]
+[gd_scene load_steps=2 format=3 uid="uid://b7wq4lqjk44t"]
 
 [ext_resource type="Script" path="res://src/ConfirmQuit.gd" id="1_q072q"]
 
