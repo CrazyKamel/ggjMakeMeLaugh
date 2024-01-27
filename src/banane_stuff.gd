@@ -5,21 +5,32 @@ var follow = false
 var available = true
 var onTable = true
 
-func newBanane():
+const cooldownBanane = 5
+
+var banane_ingame = preload("res://src/banane_ingame.tscn")
+
+func _timeout():
 	print("Banane cd fini")
 	available = true
+	self.position = Vector2(950,850)
 	self.show()
 
 func dropBanane():
 	print("Dropped")
+	
 	available = false
 	self.hide()
+	
 	var timer = Timer.new()
-	add_child(timer)
-	timer.autostart = true
+	get_parent().add_child(timer)
 	timer.one_shot = true
-	timer.wait_time = 5
-	timer.connect("timeout", self.newBanane)
+	timer.wait_time = cooldownBanane
+	timer.connect("timeout", self._timeout)
+	timer.start()
+	
+	var added_banane = banane_ingame.instantiate()
+	added_banane.position = self.position
+	get_parent().add_child(added_banane)
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -28,8 +39,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if follow:
+		$Sprite2D.modulate = Color(1,1,1,0.4)
 		self.position = get_global_mouse_position()
 	pass
 
@@ -41,6 +53,7 @@ func _input(event):
 			pass
 		elif follow and not event.pressed:
 			print("Onit released")
+			$Sprite2D.modulate = Color(1,1,1,1)
 			follow = false
 			if not onTable:
 				dropBanane()

@@ -1,7 +1,7 @@
 extends Node2D
 
 var confirmQuit = preload("res://src/ConfirmQuit.tscn")
-var banane = preload("res://src/banane.tscn")
+var banane = preload("res://src/banane_stuff.tscn")
 
 var child_count
 const bananeNodeName = "Banane"
@@ -12,7 +12,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _input(event):
