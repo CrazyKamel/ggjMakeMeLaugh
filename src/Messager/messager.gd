@@ -38,7 +38,7 @@ func _ready():
 
 func _physics_process(delta):
 	if selected:
-		$AnimatedSprite2D.animation = "grabbed"
+		$AnimatedSprite2D.animation = "armor_grabbed"
 		pos_1 = pos_2
 		pos_2 = position
 		last_velocity = get_speed(pos_1, pos_2, delta)
@@ -47,11 +47,11 @@ func _physics_process(delta):
 		
 		#last_velocity = Vector2.ZERO
 	elif abs(last_velocity.length()) > start_speed*1.05:
-		$AnimatedSprite2D.animation = "grabbed"
+		$AnimatedSprite2D.play("armor_grabbed")
 		position += last_velocity*delta
 		last_velocity = last_velocity-((last_velocity+start_velocity)/15)
 	else:
-		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.play("armor_walk")
 		vecteur_direction = calc_direction()
 		velocity = vecteur_direction * start_speed
 		self.position = self.position + velocity*delta

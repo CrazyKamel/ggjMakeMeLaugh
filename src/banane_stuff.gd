@@ -11,7 +11,7 @@ var banane_ingame = preload("res://src/banane_ingame.tscn")
 
 func _timeout():
 	available = true
-	self.position = Vector2(950,850)
+	self.position = Vector2(1050,900)
 	self.show()
 
 func dropBanane():
@@ -53,7 +53,6 @@ func _input(event):
 			follow = false
 			if not onTable:
 				dropBanane()
-				
 			pass
 
 
