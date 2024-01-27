@@ -4,8 +4,6 @@ var confirmQuit = preload("res://src/ConfirmQuit.tscn")
 var banane = preload("res://src/banane_stuff.tscn")
 var messager = preload('res://src//Messager/messager.tscn')
 
-var rng = RandomNumberGenerator.new()
-
 var child_count
 const bananeNodeName = "Banane"
 const messWidth = 128
@@ -18,8 +16,8 @@ func inst(pos):
 	add_child(instance)
 
 func _timeout() -> void:
-	var x = rng.randi_range(messWidth/2, get_window().size.x - messWidth/2)
-	var y = rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
+	var x = Global.rng.randi_range(messWidth/2, get_window().size.x - messWidth/2)
+	var y = Global.rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
 
 	inst(Vector2(x,y))
 
