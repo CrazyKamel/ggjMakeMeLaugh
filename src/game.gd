@@ -35,15 +35,14 @@ func _timeout() -> void:
 func _init():
 	var timer = Timer.new()
 	add_child(timer)
-	timer.autostart = false
+	timer.autostart = true
 	timer.one_shot = false
-	timer.wait_time = 1
+	timer.wait_time = 0.1
 	timer.connect("timeout", self._timeout)
 
 # Called when the node enters the scene tree for the first time.
-func _ready(): 	
-	inst(Vector2(600,400))
-
+func _ready(): 
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -58,10 +57,3 @@ func _input(event):
 		add_child(confirmQuitInstance)
 		confirmQuitCheck = false
 
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		inst(get_global_mouse_position())
-
-func newBanane(pos = Vector2(200,200)):
-	var banane_instance = banane.instantiate()
-	banane_instance.position = pos
-	add_child(banane_instance)
