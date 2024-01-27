@@ -1,4 +1,4 @@
-extends Area2D
+class_name Messager extends Area2D
 
 enum State {GOOD, BAD, KNIGHT}
 
