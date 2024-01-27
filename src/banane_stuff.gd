@@ -10,13 +10,11 @@ const cooldownBanane = 5
 var banane_ingame = preload("res://src/banane_ingame.tscn")
 
 func _timeout():
-	print("Banane cd fini")
 	available = true
 	self.position = Vector2(950,850)
 	self.show()
 
 func dropBanane():
-	print("Dropped")
 	
 	available = false
 	self.hide()
@@ -48,11 +46,9 @@ func _process(_delta):
 func _input(event):
 	if available and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed and inBody:
-			print("Onit pressed")
 			follow = true
 			pass
 		elif follow and not event.pressed:
-			print("Onit released")
 			$Sprite2D.modulate = Color(1,1,1,1)
 			follow = false
 			if not onTable:
@@ -72,12 +68,10 @@ func _on_area_2d_mouse_shape_exited(shape_idx):
 
 
 func _on_area_2d_area_entered(area):
-	print("Entered")
 	onTable = true
 	pass # Replace with function body.
 
 
 func _on_area_2d_area_exited(area):
-	print("Left")
 	onTable = false
 	pass # Replace with function body.
