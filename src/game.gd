@@ -12,29 +12,40 @@ const messWidth = 128
 const messHeight = 128
 var confirmQuitCheck = true
 
+var probaSpawn = 0.05
+var nbSpawned = 0
+
+
 func inst(pos):
 	var instance = messager.instantiate()
 	instance.position = pos
 	add_child(instance)
 
 func _timeout() -> void:
-	var x = rng.randi_range(messWidth/2, get_window().size.x - messWidth/2)
-	var y = rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
-
-	inst(Vector2(x,y))
+	if rng.randf() < probaSpawn:
+		var border = rng.randi_range(0,1)
+		var y = rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
+	
+		var x = -messWidth/2 if border == 0 else get_window().size.x + messWidth/2
+		
+		inst(Vector2(x,y))
+		nbSpawned+=1
+		if nbSpawned%20==0:
+			probaSpawn+=0.01
+			print(probaSpawn," ", nbSpawned)
+	
 
 func _init():
 	var timer = Timer.new()
 	add_child(timer)
-	timer.autostart = false
+	timer.autostart = true
 	timer.one_shot = false
-	timer.wait_time = 1
+	timer.wait_time = 0.1
 	timer.connect("timeout", self._timeout)
 
 # Called when the node enters the scene tree for the first time.
-func _ready(): 	
-	inst(Vector2(600,400))
-
+func _ready(): 
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -49,10 +60,3 @@ func _input(event):
 		add_child(confirmQuitInstance)
 		confirmQuitCheck = false
 
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		inst(get_global_mouse_position())
-
-func newBanane(pos = Vector2(200,200)):
-	var banane_instance = banane.instantiate()
-	banane_instance.position = pos
-	add_child(banane_instance)
