@@ -10,6 +10,8 @@ var vecteur_direction
 
 var position_visee = Vector2(960, 540)
 
+var sens # 0 = gauche ; 1 = droite
+
 var selected = false #Variable indiquant si le messager est sélectionné
 var last_velocity = Vector2(0,0) #Dernière velocité avant qu'on lâche le click
 var pos_1 : Vector2 #buffer position à t-1
@@ -28,17 +30,11 @@ func _ready():
 	start_velocity = vecteur_direction * start_speed # set la vitesse à l'origine
 	velocity = start_velocity # set la vitesse à la vitesse d'origine
 	state = Global.rng.randi_range(0,2)
-	match state:
-		0:
-			$AnimatedSprite2D.play("armor_walk") #change to GOOD messager animation
-		1:
-			$AnimatedSprite2D.play("armor_walk") #change to BAD messager animation
-		2:
-			$AnimatedSprite2D.play("armor_walk") #change to KNIGHT messager animation
+	set_animation(state, "grabbed")
 
 func _physics_process(delta):
 	if selected:
-		$AnimatedSprite2D.play("armor_grabbed")
+		set_animation(state, "grabbed")
 		pos_1 = pos_2
 		pos_2 = position
 		last_velocity = get_speed(pos_1, pos_2, delta)
@@ -47,11 +43,11 @@ func _physics_process(delta):
 		
 		#last_velocity = Vector2.ZERO
 	elif abs(last_velocity.length()) > start_speed*1.05:
-		$AnimatedSprite2D.play("armor_grabbed")
+		set_animation(state, "grabbed")
 		position += last_velocity*delta
 		last_velocity = last_velocity-((last_velocity+start_velocity)/15)
 	else:
-		$AnimatedSprite2D.play("armor_walk")
+		set_animation(state, "walk")
 		vecteur_direction = calc_direction()
 		velocity = vecteur_direction * start_speed
 		self.position = self.position + velocity*delta
@@ -63,10 +59,33 @@ func _process(delta):
 ### Tools
 func get_speed(pos_1:Vector2, pos_2:Vector2, delta):
 	return (pos_2-pos_1)/delta 
+	
+func set_animation(state, animationstyle):
+	if (animationstyle == "grabbed"):
+		match state:
+			0:
+				$AnimatedSprite2D.play("bn_grabbed") #change to GOOD messager animation
+			1:
+				$AnimatedSprite2D.play("mn_grabbed") #change to BAD messager animation
+			2:
+				$AnimatedSprite2D.play("armor_grabbed") #change to KNIGHT messager animation
+	elif (animationstyle == "walk" ):
+		match state:
+			0:
+				$AnimatedSprite2D.play("bn_walk") #change to GOOD messager animation
+			1:
+				$AnimatedSprite2D.play("mn_walk") #change to BAD messager animation
+			2:
+				$AnimatedSprite2D.play("armor_walk") #change to KNIGHT messager animation
+	$AnimatedSprite2D.flip_h = sens
 
 func calc_direction():
 	norme = (position_visee - self.position).length()
 	vecteur_direction = (position_visee - position)/norme
+	if vecteur_direction.x>0:
+		sens=1
+	else:
+		sens=0
 	return vecteur_direction
 
 
