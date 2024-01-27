@@ -17,15 +17,17 @@ func inst(pos):
 	print("Spawned at ", pos)
 
 func _timeout() -> void:
-	var x = rng.randi_range(messWidth/2, get_window().size.x - messWidth/2)
+	var border = rng.randi_range(0,1)
 	var y = rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
+	
+	var x = messWidth/2 if border == 0 else get_window().size.x - messWidth/2
 	
 	inst(Vector2(x,y))
 	
 func _init():
 	var timer = Timer.new()
 	add_child(timer)
-	timer.autostart = false
+	timer.autostart = true
 	timer.one_shot = false
 	timer.wait_time = 1
 	timer.connect("timeout", self._timeout)
