@@ -1,36 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnwlnkmeirr0s"]
+[gd_scene load_steps=9 format=3 uid="uid://bnwlnkmeirr0s"]
 
 [ext_resource type="Script" path="res://src/Messager/messager.gd" id="1_8vi8r"]
-[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="2_oxwc5"]
-[ext_resource type="Texture2D" uid="uid://bvj45q337vek" path="res://media/iconUpsidedown.png" id="3_yb8hk"]
+[ext_resource type="Texture2D" uid="uid://wleae1qvofqe" path="res://media/armorguy.png" id="2_omaqo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxf40"]
+atlas = ExtResource("2_omaqo")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygipf"]
+atlas = ExtResource("2_omaqo")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf3nk"]
+atlas = ExtResource("2_omaqo")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob2n3"]
+atlas = ExtResource("2_omaqo")
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i4cwn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_oxwc5")
+"texture": SubResource("AtlasTexture_cxf40")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_yb8hk")
+"texture": SubResource("AtlasTexture_ygipf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf3nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob2n3")
 }],
 "loop": true,
-"name": &"grabbed",
+"name": &"armor_grabbed",
 "speed": 10.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_oxwc5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_yb8hk")
-}],
+"frames": [],
 "loop": true,
-"name": &"walk",
+"name": &"armor_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"bn_grabbed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"bn_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"mn_grabbed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"mn_walk",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_401ke"]
-size = Vector2(257, 257)
+size = Vector2(63, 91)
 
 [node name="Messager" type="Area2D"]
 position = Vector2(973, 434)
@@ -39,11 +74,13 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_i4cwn")
-animation = &"grabbed"
+animation = &"armor_grabbed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
+position = Vector2(-8.5, 9.5)
 shape = SubResource("RectangleShape2D_401ke")
 metadata/_edit_group_ = true
 
