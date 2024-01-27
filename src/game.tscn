@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bukt6wbc4moqv"]
+[gd_scene load_steps=6 format=3 uid="uid://sasogt5h5jes"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_1ccu5"]
-[ext_resource type="PackedScene" uid="uid://uvguanklbvnk" path="res://src/banane_stuff.tscn" id="2_mto8x"]
+[ext_resource type="PackedScene" path="res://src/banane_stuff.tscn" id="2_mto8x"]
 
 [sub_resource type="Gradient" id="Gradient_ylerd"]
 

@@ -68,3 +68,7 @@ func _input(event): # Quand on relache le clique gauche
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			selected = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
