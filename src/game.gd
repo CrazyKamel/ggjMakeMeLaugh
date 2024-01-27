@@ -10,16 +10,27 @@ const messWidth = 128
 const messHeight = 128
 var confirmQuitCheck = true
 
+var probaSpawn = 0.05
+var nbSpawned = 0
+
+
 func inst(pos):
 	var instance = messager.instantiate()
 	instance.position = pos
 	add_child(instance)
 
 func _timeout() -> void:
-	var x = Global.rng.randi_range(messWidth/2, get_window().size.x - messWidth/2)
-	var y = Global.rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
+	if Global.rng.randf() < probaSpawn:
+		var border = Global.rng.randi_range(0,1)
+		var y = Global.rng.randi_range(messHeight/2, get_window().size.y - messHeight/2)
 
-	inst(Vector2(x,y))
+		var x = -messWidth/2 if border == 0 else get_window().size.x + messWidth/2
+		
+		inst(Vector2(x,y))
+		nbSpawned+=1
+		if nbSpawned%20==0:
+			probaSpawn+=0.01
+			print(probaSpawn," ", nbSpawned)
 
 func _init():
 	var timer = Timer.new()

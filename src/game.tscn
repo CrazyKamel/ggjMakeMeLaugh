@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bukt6wbc4moqv"]
+[gd_scene load_steps=6 format=3 uid="uid://bukt6wbc4moqv"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_1ccu5"]
-[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="1_xhw8e"]
 [ext_resource type="PackedScene" uid="uid://uvguanklbvnk" path="res://src/banane_stuff.tscn" id="2_mto8x"]
 
 [sub_resource type="Gradient" id="Gradient_ylerd"]
@@ -14,10 +13,6 @@ size = Vector2(255.886, 0.998879)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1ccu5")
-
-[node name="IconTest" type="Sprite2D" parent="."]
-position = Vector2(973, 434)
-texture = ExtResource("1_xhw8e")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(954, 870)
