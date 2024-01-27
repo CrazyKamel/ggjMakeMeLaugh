@@ -30,15 +30,15 @@ func _ready():
 	state = Global.rng.randi_range(0,2)
 	match state:
 		0:
-			$AnimatedSprite2D.animation = "walk" #change to GOOD messager animation
+			$AnimatedSprite2D.play("armor_walk") #change to GOOD messager animation
 		1:
-			$AnimatedSprite2D.animation = "walk" #change to BAD messager animation
+			$AnimatedSprite2D.play("armor_walk") #change to BAD messager animation
 		2:
-			$AnimatedSprite2D.animation = "walk" #change to KNIGHT messager animation
+			$AnimatedSprite2D.play("armor_walk") #change to KNIGHT messager animation
 
 func _physics_process(delta):
 	if selected:
-		$AnimatedSprite2D.animation = "armor_grabbed"
+		$AnimatedSprite2D.play("armor_grabbed")
 		pos_1 = pos_2
 		pos_2 = position
 		last_velocity = get_speed(pos_1, pos_2, delta)
