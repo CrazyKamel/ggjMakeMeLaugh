@@ -14,6 +14,7 @@ func inst(pos):
 	var instance = messager.instantiate()
 	instance.position = pos
 	add_child(instance)
+	print("Spawned at ", pos)
 
 func _timeout() -> void:
 	var x = rng.randi_range(messWidth/2, get_window().size.x - messWidth/2)
@@ -24,7 +25,7 @@ func _timeout() -> void:
 func _init():
 	var timer = Timer.new()
 	add_child(timer)
-	timer.autostart = true
+	timer.autostart = false
 	timer.one_shot = false
 	timer.wait_time = 1
 	timer.connect("timeout", self._timeout)
@@ -36,9 +37,6 @@ func _input(event):
 
 
 func _ready():
-	inst(Vector2(0,0))
-	inst(Vector2(200,0))
-	inst(Vector2(400,0))
 	pass # Replace with function body.
 
 
