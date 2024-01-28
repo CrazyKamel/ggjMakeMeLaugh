@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwxtjjg2ajfsj"]
+[gd_scene load_steps=3 format=3 uid="uid://bwxtjjg2ajfsj"]
 
 [ext_resource type="Script" path="res://src/Interface/endgame.gd" id="1_dny7r"]
+[ext_resource type="AudioStream" uid="uid://cl5mq7w7a8dgd" path="res://media/game-over.mp3" id="2_oepgo"]
 
 [node name="Endgame" type="Node"]
 script = ExtResource("1_dny7r")
@@ -26,6 +27,9 @@ offset_top = 471.0
 offset_right = 1211.0
 offset_bottom = 560.0
 text = "Main Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_oepgo")
 
 [connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
