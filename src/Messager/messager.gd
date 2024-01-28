@@ -46,44 +46,39 @@ func _ready():
 	var r = Global.rng.randf()
 	if r >= probaSpawnTypes["bad"]: #0.6 - 1
 		state = 1 #bad
+		happyBubbleSprite.hide()
 	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["knight"]: #0.3 - 0.6
 		state = 0 #good
+		angryBubbleSprite.hide()
 	else: #0.0 - 0.3
 		state = 2 #knight
-		
-		
-	match state:
-		0:
-			$AnimatedSprite2D.animation = "walk" #change to GOOD messager animation
-			angryBubbleSprite.hide()
-		1:
-			$AnimatedSprite2D.animation = "walk" #change to BAD messager animation
-			happyBubbleSprite.hide()
-		2:
-			$AnimatedSprite2D.animation = "walk" #change to KNIGHT messager animation
-			happyBubbleSprite.hide()
-	set_animation(state, "grabbed")
+		happyBubbleSprite.hide()
+			
+	set_animation(state, "walk")
 
 func _physics_process(delta):
-	if not frozen:
-		if selected:
+	if selected:
+		set_animation(state, "grabbed")
+		pos_1 = pos_2
+		pos_2 = position
+		last_velocity = get_speed(pos_1, pos_2, delta)
+		
+		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
+		
+		#last_velocity = Vector2.ZERO
+	elif abs(last_velocity.length()) > start_speed*1.05:
+		
+		if not frozen:
 			set_animation(state, "grabbed")
-			pos_1 = pos_2
-			pos_2 = position
-			last_velocity = get_speed(pos_1, pos_2, delta)
-			
-			global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
-			
-			#last_velocity = Vector2.ZERO
-		elif abs(last_velocity.length()) > start_speed*1.05:
-			set_animation(state, "grabbed")
-			position += last_velocity*delta
-			last_velocity = last_velocity-((last_velocity+start_velocity)/15)
-		else:
+			self.position += last_velocity*delta
+		last_velocity = last_velocity-((last_velocity+start_velocity)/15)
+	else:
+		
+		vecteur_direction = calc_direction()
+		velocity = vecteur_direction * start_speed
+		if not frozen:
 			set_animation(state, "walk")
-			vecteur_direction = calc_direction()
-			velocity = vecteur_direction * start_speed
-			self.position = self.position + velocity*delta
+			self.position += velocity*delta
 
 func _process(delta):
 	if abs((position_visee - self.position).x) < 100 and abs((position_visee - self.position).y) < 100 and aller:
@@ -99,6 +94,7 @@ func _process(delta):
 				angryBubbleSprite.hide()
 		
 		aller = false
+		set_animation(state, "stopped")
 		frozen = true
 	elif not aller:
 		tempo -= 1
@@ -117,19 +113,27 @@ func set_animation(state, animationstyle):
 	if (animationstyle == "grabbed"):
 		match state:
 			0:
-				$AnimatedSprite2D.play("bn_grabbed") #change to GOOD messager animation
+				$AnimatedSprite2D.play("messager_grabbed") #change to GOOD messager animation
 			1:
-				$AnimatedSprite2D.play("mn_grabbed") #change to BAD messager animation
+				$AnimatedSprite2D.play("messager_grabbed") #change to BAD messager animation
 			2:
 				$AnimatedSprite2D.play("armor_grabbed") #change to KNIGHT messager animation
 	elif (animationstyle == "walk" ):
 		match state:
 			0:
-				$AnimatedSprite2D.play("bn_walk") #change to GOOD messager animation
+				$AnimatedSprite2D.play("messager_walk") #change to GOOD messager animation
 			1:
-				$AnimatedSprite2D.play("mn_walk") #change to BAD messager animation
+				$AnimatedSprite2D.play("messager_walk") #change to BAD messager animation
 			2:
 				$AnimatedSprite2D.play("armor_walk") #change to KNIGHT messager animation
+	elif (animationstyle == "stopped" ):
+		match state:
+			0:
+				$AnimatedSprite2D.play("messager_stopped") #change to GOOD messager animation
+			1:
+				$AnimatedSprite2D.play("messager_stopped") #change to BAD messager animation
+			2:
+				$AnimatedSprite2D.play("armor_stopped") #change to KNIGHT messager animation
 	$AnimatedSprite2D.flip_h = sens
 
 func calc_direction():
@@ -154,5 +158,4 @@ func _input(event): # Quand on relache le clique gauche
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	print("left")
 	queue_free()

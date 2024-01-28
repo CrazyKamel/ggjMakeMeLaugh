@@ -50,7 +50,6 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	inst(Vector2(600,400))
 	hud = hud_preload.instantiate()
 	add_child(hud)
 
