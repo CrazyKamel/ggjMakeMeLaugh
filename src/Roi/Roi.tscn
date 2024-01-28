@@ -1,31 +1,87 @@
-[gd_scene load_steps=5 format=3 uid="uid://48euubrhv3r"]
+[gd_scene load_steps=8 format=3 uid="uid://48euubrhv3r"]
 
 [ext_resource type="Script" path="res://src/Roi/Roi.gd" id="1_qm0o3"]
 [ext_resource type="Texture2D" uid="uid://dk18ublb3lwpc" path="res://media/roi.png" id="2_x8dhi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8vux"]
+atlas = ExtResource("2_x8dhi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phkn1"]
+atlas = ExtResource("2_x8dhi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnwtj"]
+atlas = ExtResource("2_x8dhi")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nx1r1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_x8dhi")
+"texture": SubResource("AtlasTexture_g8vux")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnwtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnwtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnwtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnwtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkn1")
+}],
+"loop": true,
+"name": &"laugh",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7huu8"]
-radius = 23.5294
-height = 82.3529
+radius = 270.588
+height = 658.823
 
 [node name="Roi" type="Area2D"]
 script = ExtResource("1_qm0o3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.16, 0.16)
+texture_filter = 1
+scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_nx1r1")
+animation = &"laugh"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(-1, 14)
 scale = Vector2(0.17, 0.17)
 shape = SubResource("CapsuleShape2D_7huu8")
+disabled = true

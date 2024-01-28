@@ -48,7 +48,8 @@ position = Vector2(1050, 900)
 scale = Vector2(1.3, 1.3)
 
 [node name="Roi" parent="." instance=ExtResource("4_rg8nn")]
-position = Vector2(965, 441)
+texture_filter = 1
+position = Vector2(964, 422)
 
 [connection signal="area_entered" from="Area2D" to="Banane" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="Banane" method="_on_area_2d_area_exited"]

@@ -8,7 +8,7 @@ var velocity # Vecteur vitesse du messager à la frame présente
 var norme
 var vecteur_direction
 
-var position_visee = Vector2(960, 540)
+var position_visee = Vector2(960, 440)
 
 var sens # 0 = gauche ; 1 = droite
 
