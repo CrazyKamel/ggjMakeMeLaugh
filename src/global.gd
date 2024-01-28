@@ -1,6 +1,7 @@
 extends Node
 
 var current_scene = null
+var score = 0
 
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.

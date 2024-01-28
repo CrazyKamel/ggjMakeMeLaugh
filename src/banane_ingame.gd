@@ -16,7 +16,7 @@ func _on_area_2d_area_entered(area):
 		$AudioStreamPlayer.play()
 		hide()
 		get_node("Area2D/CollisionShape2D").set_deferred("disabled", true)
-		get_parent().addLaugh(0.4)
+		get_parent().addLaugh(1.5)
 		area.queue_free()
 
 

@@ -2,8 +2,8 @@ class_name Messager extends Area2D
 
 enum State {GOOD, BAD, KNIGHT}
 
-var probaSpawnTypes = {"good":0.3,"bad": 0.6,"knight": 0.1} # GOOD, BAD, KNIGHT
-var damage = {"good":1.2,"bad": 2,"knight": 4} # GOOD, BAD, KNIGHT
+var probaSpawnTypes = {"good":0.35,"bad": 0.9} # GOOD, BAD, KNIGHT
+var damage = {"good":2,"bad": 4,"knight": 6} # GOOD, BAD, KNIGHT
 
 @export var start_speed_messager = 100 #Vitesse du messager à l'origine du messager
 @export var start_speed_armor = 50 #Vitesse du messager à l'origine du knight
@@ -50,22 +50,21 @@ func _ready():
 	
 	
 	var r = Global.rng.randf()
-	if r >= probaSpawnTypes["bad"]: #0.6 - 1
-		state = 1 #bad
-		happyBubbleSprite.hide()
-		glideForce = glideForceNormal
-		start_speed = start_speed_messager
-	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["knight"]: #0.3 - 0.6
-		state = 0 #good
-		angryBubbleSprite.hide()
-		glideForce = glideForceNormal
-		start_speed = start_speed_messager
-	else: #0.0 - 0.3
+	if r >= probaSpawnTypes["bad"]: #0.9 - 1
 		state = 2 #knight
 		happyBubbleSprite.hide()
 		glideForce = glideForceArmor
 		start_speed = start_speed_armor
-			
+	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["good"]: #0.35 - 0.9
+		state = 1 #bad
+		happyBubbleSprite.hide()
+		glideForce = glideForceNormal
+		start_speed = start_speed_messager
+	else: #0 - 0.35
+		state = 0 #good
+		angryBubbleSprite.hide()
+		glideForce = glideForceNormal
+		start_speed = start_speed_messager
 	
 	
 	vecteur_direction = calc_direction()

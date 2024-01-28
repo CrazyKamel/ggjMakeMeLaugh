@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://htnd4dd36att"]
+[gd_scene load_steps=6 format=3 uid="uid://htnd4dd36att"]
 
 [ext_resource type="Script" path="res://src/hud.gd" id="1_bb4m7"]
 [ext_resource type="Texture2D" uid="uid://mf41c5lyj0sf" path="res://media/laughbar.png" id="2_btn4s"]
 [ext_resource type="Texture2D" uid="uid://cc0cxgm060ciy" path="res://media/curseur.png" id="3_p4t4l"]
+[ext_resource type="FontFile" uid="uid://c2h6b05ye5so6" path="res://fonts/Daydream.ttf" id="4_syb3l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3gfb3"]
+font = ExtResource("4_syb3l")
+font_size = 40
 
 [node name="Hud" type="Node2D"]
 script = ExtResource("1_bb4m7")
 
 [node name="LaughBar" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(975, 98)
+position = Vector2(839, 98)
 scale = Vector2(7.83017, 7.26563)
 texture = ExtResource("2_btn4s")
 
@@ -18,3 +23,23 @@ texture_filter = 1
 position = Vector2(1425, 99)
 scale = Vector2(6.625, 5.28125)
 texture = ExtResource("3_p4t4l")
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+offset_left = 1619.0
+offset_top = 52.0
+offset_right = 1869.0
+offset_bottom = 105.0
+text = "0"
+label_settings = SubResource("LabelSettings_3gfb3")
+horizontal_alignment = 1
+
+[node name="Combo" type="Label" parent="Score"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = 85.0
+offset_right = 247.0
+offset_bottom = 138.0
+label_settings = SubResource("LabelSettings_3gfb3")
+horizontal_alignment = 1
