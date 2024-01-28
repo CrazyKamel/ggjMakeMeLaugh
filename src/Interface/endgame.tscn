@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwxtjjg2ajfsj"]
+
+[ext_resource type="Script" path="res://src/Interface/endgame.gd" id="1_dny7r"]
+
+[node name="Endgame" type="Node"]
+script = ExtResource("1_dny7r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 909.0
+offset_top = 436.0
+offset_right = 1083.0
+offset_bottom = 486.0
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="."]
+offset_left = 782.0
+offset_top = 471.0
+offset_right = 978.0
+offset_bottom = 560.0
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="."]
+offset_left = 1015.0
+offset_top = 471.0
+offset_right = 1211.0
+offset_bottom = 560.0
+text = "Main Menu"
+
+[connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
