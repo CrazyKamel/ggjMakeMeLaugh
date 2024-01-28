@@ -52,16 +52,16 @@ func _ready():
 	var r = Global.rng.randf()
 	if r >= probaSpawnTypes["bad"]: #0.6 - 1
 		state = 1 #bad
-    happyBubbleSprite.hide()
-    glideForce = glideForceNormal
+		happyBubbleSprite.hide()
+		glideForce = glideForceNormal
 	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["knight"]: #0.3 - 0.6
 		state = 0 #good
 		angryBubbleSprite.hide()
-    glideForce = glideForceNormal
+		glideForce = glideForceNormal
 	else: #0.0 - 0.3
 		state = 2 #knight
 		happyBubbleSprite.hide()
-    glideForce = glideForceArmor
+		glideForce = glideForceArmor
 			
 	set_animation(state, "walk")
 
