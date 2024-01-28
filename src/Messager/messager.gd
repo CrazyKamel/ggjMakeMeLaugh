@@ -3,6 +3,7 @@ class_name Messager extends Area2D
 enum State {GOOD, BAD, KNIGHT}
 
 var probaSpawnTypes = {"good":0.3,"bad": 0.6,"knight": 0.1} # GOOD, BAD, KNIGHT
+var damage = {"good":1.2,"bad": 2,"knight": 4} # GOOD, BAD, KNIGHT
 
 @export var start_speed = 100 #Vitesse du messager à l'origine
 var start_velocity # Vecteur vitesse du messager à l'origine
@@ -12,6 +13,11 @@ var vecteur_direction
 
 var happyBubbleSprite
 var angryBubbleSprite
+
+var glideForceNormal = 20
+var glideForceArmor = 0.1
+
+var glideForce
 
 var position_visee = Vector2(960, 540)
 var starting_pos
@@ -46,10 +52,13 @@ func _ready():
 	var r = Global.rng.randf()
 	if r >= probaSpawnTypes["bad"]: #0.6 - 1
 		state = 1 #bad
+		glideForce = glideForceNormal
 	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["knight"]: #0.3 - 0.6
 		state = 0 #good
+		glideForce = glideForceNormal
 	else: #0.0 - 0.3
 		state = 2 #knight
+		glideForce = glideForceArmor
 		
 		
 	match state:
@@ -72,7 +81,7 @@ func _physics_process(delta):
 			pos_2 = position
 			last_velocity = get_speed(pos_1, pos_2, delta)
 			
-			global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
+			global_position = lerp(global_position, get_global_mouse_position(), glideForce * delta)
 			
 			#last_velocity = Vector2.ZERO
 		elif abs(last_velocity.length()) > start_speed*1.05:
@@ -89,13 +98,13 @@ func _process(delta):
 	if abs((position_visee - self.position).x) < 100 and abs((position_visee - self.position).y) < 100 and aller:
 		match state:
 			0:
-				get_parent().addLaugh(0.7)
+				get_parent().addLaugh(damage["good"])
 				happyBubbleSprite.hide()
 			1:
-				get_parent().subLaugh(0.4)
+				get_parent().subLaugh(damage["bad"])
 				angryBubbleSprite.hide()
 			2:
-				get_parent().subLaugh(0.8)
+				get_parent().subLaugh(damage["knight"])
 				angryBubbleSprite.hide()
 		
 		aller = false
