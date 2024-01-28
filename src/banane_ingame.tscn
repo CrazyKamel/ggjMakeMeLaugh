@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvidscxl2pcqh"]
+[gd_scene load_steps=5 format=3 uid="uid://dvidscxl2pcqh"]
 
 [ext_resource type="Script" path="res://src/banane_ingame.gd" id="1_acwjw"]
 [ext_resource type="Texture2D" uid="uid://c3aks23lqcah4" path="res://media/banane.png" id="2_mnv4f"]
+[ext_resource type="AudioStream" uid="uid://bh0hg67yi0l3w" path="res://media/slipandfall.mp3" id="3_1dxqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u72vg"]
 size = Vector2(45, 28)
@@ -22,4 +23,8 @@ texture = ExtResource("2_mnv4f")
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_u72vg")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1dxqv")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
