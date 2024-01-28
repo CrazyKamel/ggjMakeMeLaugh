@@ -27,7 +27,7 @@ func dropBanane():
 	timer.start()
 	
 	var added_banane = banane_ingame.instantiate()
-	added_banane.position = self.position
+	added_banane.position = self.position + Vector2(0,15)
 	get_parent().add_child(added_banane)
 	
 
