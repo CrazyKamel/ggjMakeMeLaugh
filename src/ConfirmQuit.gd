@@ -18,3 +18,19 @@ func _on_yes_pressed():
 func _on_no_pressed():
 	get_parent().subscribeCancelQuit();
 	self.queue_free()
+
+
+func _on_yes_mouse_entered():
+	$Yes.set_scale(Vector2(1.1,1.1))
+
+
+func _on_yes_mouse_exited():
+	$Yes.set_scale(Vector2(1,1))
+
+
+func _on_no_mouse_entered():
+	$No.set_scale(Vector2(1.1,1.1))
+
+
+func _on_no_mouse_exited():
+	$No.set_scale(Vector2(1,1))
