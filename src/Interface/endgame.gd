@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 # Called when the node enters the scene tree for the first time.
@@ -7,13 +7,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	pass
 
+func _on_play_again_pressed():
+	Global.goto_scene("res://src/game.tscn")
 
-func _on_area_2d_area_entered(area):
-	if area is Messager:
-		get_parent().addLaugh(0.4)
-		queue_free()
-		area.queue_free()
-		
+
+func _on_main_menu_pressed():
+	Global.goto_scene("res://src/main.tscn")
