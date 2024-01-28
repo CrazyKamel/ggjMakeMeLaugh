@@ -2,8 +2,8 @@ class_name Messager extends Area2D
 
 enum State {GOOD, BAD, KNIGHT}
 
-var probaSpawnTypes = {"good":0.3,"bad": 0.6,"knight": 0.1} # GOOD, BAD, KNIGHT
-var damage = {"good":1.2,"bad": 2,"knight": 4} # GOOD, BAD, KNIGHT
+var probaSpawnTypes = {"good":0.35,"bad": 0.9} # GOOD, BAD, KNIGHT
+var damage = {"good":2,"bad": 4,"knight": 6} # GOOD, BAD, KNIGHT
 
 @export var start_speed = 100 #Vitesse du messager à l'origine
 var start_velocity # Vecteur vitesse du messager à l'origine
@@ -50,18 +50,18 @@ func _ready():
 	start_velocity = vecteur_direction * start_speed # set la vitesse à l'origine
 	velocity = start_velocity # set la vitesse à la vitesse d'origine
 	var r = Global.rng.randf()
-	if r >= probaSpawnTypes["bad"]: #0.6 - 1
-		state = 1 #bad
-		happyBubbleSprite.hide()
-		glideForce = glideForceNormal
-	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["knight"]: #0.3 - 0.6
-		state = 0 #good
-		angryBubbleSprite.hide()
-		glideForce = glideForceNormal
-	else: #0.0 - 0.3
+	if r >= probaSpawnTypes["bad"]: #0.9 - 1
 		state = 2 #knight
 		happyBubbleSprite.hide()
 		glideForce = glideForceArmor
+	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["good"]: #0.35 - 0.9
+		state = 1 #bad
+		happyBubbleSprite.hide()
+		glideForce = glideForceNormal
+	else: #0 - 0.35
+		state = 0 #good
+		angryBubbleSprite.hide()
+		glideForce = glideForceNormal
 			
 	set_animation(state, "walk")
 

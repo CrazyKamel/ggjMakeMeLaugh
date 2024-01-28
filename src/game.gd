@@ -16,7 +16,7 @@ var confirmQuitCheck = true
 
 var probaSpawn = 0.05
 var nbSpawned = 0
-const lossRate = 18
+const lossRate = 15
 
 func addLaugh(toAdd):
 	hud.addLaugh(toAdd)

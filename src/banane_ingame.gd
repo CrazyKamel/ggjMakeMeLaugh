@@ -13,7 +13,7 @@ func _process(_delta):
 
 func _on_area_2d_area_entered(area):
 	if area is Messager:
-		get_parent().addLaugh(0.4)
+		get_parent().addLaugh(1.5)
 		queue_free()
 		area.queue_free()
 	
