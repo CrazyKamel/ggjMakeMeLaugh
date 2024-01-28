@@ -16,4 +16,4 @@ func _on_area_2d_area_entered(area):
 		get_parent().addLaugh(0.4)
 		queue_free()
 		area.queue_free()
-		
+	
