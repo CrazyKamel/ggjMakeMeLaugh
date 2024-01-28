@@ -54,17 +54,17 @@ func _ready():
 		state = 2 #knight
 		happyBubbleSprite.hide()
 		glideForce = glideForceArmor
-    start_speed = start_speed_armor
+		start_speed = start_speed_armor
 	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["good"]: #0.35 - 0.9
 		state = 1 #bad
 		happyBubbleSprite.hide()
 		glideForce = glideForceNormal
-    start_speed = start_speed_messager
+		start_speed = start_speed_messager
 	else: #0 - 0.35
 		state = 0 #good
 		angryBubbleSprite.hide()
 		glideForce = glideForceNormal
-    start_speed = start_speed_messager
+		start_speed = start_speed_messager
 	
 	
 	vecteur_direction = calc_direction()

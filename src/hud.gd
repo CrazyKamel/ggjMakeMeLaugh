@@ -18,7 +18,6 @@ func updateScore(laughPoints):
 		combo += 1
 		score += int(laughPoints*(117*combo))
 		text_score.text = str(int(score))
-		print("combo ", combo)
 		updateCombo()
 		
 	elif laughPoints < -1:
@@ -28,10 +27,8 @@ func updateScore(laughPoints):
 
 func updateCombo():
 	if combo > 0:
-		print("updated")
 		text_combo.text = str("x", combo)
 		ft = sizeCombo + -0.7*combo+30
-		print(ft)
 		#text_combo.theme.font_size = sizeCombo + combo*3
 	else:
 		text_combo.text = ""
@@ -40,6 +37,7 @@ func updateCombo():
 func updateCurseur():
 	if currentLaugh < 0:
 		#Animation du roi qui est en colère
+		Global.score = score
 		Global.goto_scene("res://src/Interface/endgame.tscn")
 	if currentLaugh > 100: currentLaugh = 100
 	if currentLaugh <= 0: currentLaugh = 0
@@ -85,8 +83,6 @@ func _process(delta):
 			buffer = (buffer+1)%3
 			if buffer == 0:
 				ft -= 1
-				print(ft)
-				
 		else:
 			combo -= 1
 			updateCombo()
