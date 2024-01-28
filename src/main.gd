@@ -17,3 +17,27 @@ func _on_start_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_menu_button_mouse_entered():
+	$MenuButton.set_scale(Vector2(1.1,1.1))
+
+
+func _on_menu_button_mouse_exited():
+	$MenuButton.set_scale(Vector2(1,1))
+
+
+func _on_quit_button_mouse_entered():
+	$QuitButton.set_scale(Vector2(1.1,1.1))
+
+
+func _on_quit_button_mouse_exited():
+	$QuitButton.set_scale(Vector2(1,1))
+
+
+func _on_start_button_mouse_entered():
+	$StartButton.set_scale(Vector2(1.1,1.1))
+
+
+func _on_start_button_mouse_exited():
+	$StartButton.set_scale(Vector2(1,1))

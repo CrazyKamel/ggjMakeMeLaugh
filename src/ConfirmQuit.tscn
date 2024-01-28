@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccjdnwss55c6u"]
+[gd_scene load_steps=7 format=3 uid="uid://b7wq4lqjk44t"]
 
 [ext_resource type="Script" path="res://src/ConfirmQuit.gd" id="1_q072q"]
+[ext_resource type="Texture2D" uid="uid://dqxam3jth1bbx" path="res://media/pquitquestionex.png" id="2_sl7l4"]
+[ext_resource type="Texture2D" uid="uid://cwuudkf8c7qg2" path="res://media/pyesex.png" id="3_t4fgf"]
+[ext_resource type="Texture2D" uid="uid://b2exw375ivkb1" path="res://media/pnoex.png" id="4_wrqv0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fs2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kg5hl"]
 
 [node name="ConfirmQuit" type="Control"]
 layout_mode = 3
@@ -11,30 +18,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q072q")
 
+[node name="Pquitquestionex" type="Sprite2D" parent="."]
+position = Vector2(960, 597)
+texture = ExtResource("2_sl7l4")
+
 [node name="Yes" type="Button" parent="."]
 layout_mode = 0
-offset_left = 900.0
-offset_top = 540.0
-offset_right = 975.0
-offset_bottom = 615.0
-text = "Yes"
+offset_left = 840.0
+offset_top = 597.0
+offset_right = 915.0
+offset_bottom = 638.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0fs2t")
+icon = ExtResource("3_t4fgf")
+flat = true
 
 [node name="No" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1020.0
-offset_top = 540.0
-offset_right = 1095.0
-offset_bottom = 615.0
-text = "No"
+offset_left = 1024.0
+offset_top = 597.0
+offset_right = 1079.0
+offset_bottom = 638.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kg5hl")
+icon = ExtResource("4_wrqv0")
+flat = true
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 900.0
-offset_top = 489.0
-offset_right = 1097.0
-offset_bottom = 529.0
-text = "Do you want to quit ?"
-horizontal_alignment = 1
-
+[connection signal="mouse_entered" from="Yes" to="." method="_on_yes_mouse_entered"]
+[connection signal="mouse_exited" from="Yes" to="." method="_on_yes_mouse_exited"]
 [connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
+[connection signal="mouse_entered" from="No" to="." method="_on_no_mouse_entered"]
+[connection signal="mouse_exited" from="No" to="." method="_on_no_mouse_exited"]
 [connection signal="pressed" from="No" to="." method="_on_no_pressed"]

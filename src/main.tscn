@@ -1,16 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=8 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_os583"]
+[ext_resource type="Texture2D" uid="uid://qqv0qfwk4s7t" path="res://media/titlebgex.png" id="2_4kasm"]
+[ext_resource type="Texture2D" uid="uid://bc0jfv1osexru" path="res://media/titleoptionex.png" id="2_cwmrq"]
+[ext_resource type="Texture2D" uid="uid://dbcywqcuvyaw2" path="res://media/titlequitex.png" id="3_pbpau"]
+[ext_resource type="Texture2D" uid="uid://v2jswbdb2ixx" path="res://media/titlestartex.png" id="4_purb0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ne22n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_isw04"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_os583")
 
+[node name="Titlebgex" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_4kasm")
+
 [node name="MenuButton" type="MenuButton" parent="."]
-offset_left = 34.0
-offset_top = 475.0
-offset_right = 352.0
-offset_bottom = 673.0
-text = "Option"
+offset_top = 949.0
+offset_right = 362.0
+offset_bottom = 1044.0
+icon = ExtResource("2_cwmrq")
 switch_on_hover = true
 item_count = 1
 popup/item_0/text = "Test"
@@ -18,18 +29,42 @@ popup/item_0/checkable = 1
 popup/item_0/id = 0
 
 [node name="QuitButton" type="Button" parent="."]
-offset_left = 34.0
-offset_top = 285.0
-offset_right = 376.0
-offset_bottom = 439.0
-text = "Quit"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = 256.0
+offset_right = 102.0
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ne22n")
+icon = ExtResource("3_pbpau")
+flat = true
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 34.0
-offset_top = 92.0
-offset_right = 376.0
-offset_bottom = 246.0
-text = "Start"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -199.0
+offset_right = 143.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_isw04")
+icon = ExtResource("4_purb0")
+flat = true
 
+[connection signal="mouse_entered" from="MenuButton" to="." method="_on_menu_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuButton" to="." method="_on_menu_button_mouse_exited"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="QuitButton" to="." method="_on_quit_button_mouse_exited"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

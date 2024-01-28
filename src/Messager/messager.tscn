@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bnwlnkmeirr0s"]
+[gd_scene load_steps=26 format=3 uid="uid://bnwlnkmeirr0s"]
 
 [ext_resource type="Script" path="res://src/Messager/messager.gd" id="1_8vi8r"]
 [ext_resource type="Texture2D" uid="uid://wleae1qvofqe" path="res://media/armorguy.png" id="2_omaqo"]
-[ext_resource type="Texture2D" uid="uid://rq2hu7h8o8n4" path="res://media/messagerBN.png" id="3_hibet"]
 [ext_resource type="Texture2D" uid="uid://b6dg2yopnjve6" path="res://media/messager.png" id="4_0gbhs"]
 [ext_resource type="Texture2D" uid="uid://cgafeepvvu7pd" path="res://media/emotionbubble_happy.png" id="4_26iro"]
 [ext_resource type="Texture2D" uid="uid://dnycr0dv7eqp6" path="res://media/emotionbubble_angry.png" id="5_4ncwb"]
@@ -43,20 +42,20 @@ region = Rect2(32, 32, 32, 32)
 atlas = ExtResource("2_omaqo")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q26p5"]
-atlas = ExtResource("3_hibet")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7i8t"]
+atlas = ExtResource("4_0gbhs")
 region = Rect2(96, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vc8h7"]
-atlas = ExtResource("3_hibet")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kncv4"]
+atlas = ExtResource("4_0gbhs")
 region = Rect2(64, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oy4j8"]
-atlas = ExtResource("3_hibet")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsexk"]
+atlas = ExtResource("4_0gbhs")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpf5k"]
-atlas = ExtResource("3_hibet")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ovof"]
+atlas = ExtResource("4_0gbhs")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muhjp"]
@@ -125,16 +124,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q26p5")
+"texture": SubResource("AtlasTexture_j7i8t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vc8h7")
+"texture": SubResource("AtlasTexture_kncv4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oy4j8")
+"texture": SubResource("AtlasTexture_tsexk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wpf5k")
+"texture": SubResource("AtlasTexture_0ovof")
 }],
 "loop": true,
 "name": &"messager_grabbed",
@@ -179,7 +178,7 @@ metadata/_edit_lock_ = true
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_i4cwn")
-animation = &"messager_stopped"
+animation = &"messager_grabbed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8.5, 9.5)

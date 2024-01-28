@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rq2hu7h8o8n4"
-path="res://.godot/imported/messagerBN.png-738a0278c1deff8bb143fd502c421111.ctex"
+uid="uid://c1edqfujya7wb"
+path="res://.godot/imported/gorestartex.png-b05755dba4d080d28b2b1693bca82349.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/messagerBN.png"
-dest_files=["res://.godot/imported/messagerBN.png-738a0278c1deff8bb143fd502c421111.ctex"]
+source_file="res://media/gorestartex.png"
+dest_files=["res://.godot/imported/gorestartex.png-b05755dba4d080d28b2b1693bca82349.ctex"]
 
 [params]
 
