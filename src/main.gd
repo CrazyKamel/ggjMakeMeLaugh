@@ -3,6 +3,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_node("Credits1Ex").hide()
+	get_node("Creditsex2").hide()
 	pass
 
 
@@ -20,11 +22,13 @@ func _on_quit_button_pressed():
 
 
 func _on_menu_button_mouse_entered():
-	$MenuButton.set_scale(Vector2(1.1,1.1))
+	get_node("Credits1Ex").show()
+	get_node("Creditsex2").show()
 
 
 func _on_menu_button_mouse_exited():
-	$MenuButton.set_scale(Vector2(1,1))
+	get_node("Credits1Ex").hide()
+	get_node("Creditsex2").hide()
 
 
 func _on_quit_button_mouse_entered():
