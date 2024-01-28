@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7wq4lqjk44t"]
+[gd_scene load_steps=7 format=3 uid="uid://b7wq4lqjk44t"]
 
 [ext_resource type="Script" path="res://src/ConfirmQuit.gd" id="1_q072q"]
 [ext_resource type="Texture2D" uid="uid://dqxam3jth1bbx" path="res://media/pquitquestionex.png" id="2_sl7l4"]
 [ext_resource type="Texture2D" uid="uid://cwuudkf8c7qg2" path="res://media/pyesex.png" id="3_t4fgf"]
 [ext_resource type="Texture2D" uid="uid://b2exw375ivkb1" path="res://media/pnoex.png" id="4_wrqv0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fs2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kg5hl"]
 
 [node name="ConfirmQuit" type="Control"]
 layout_mode = 3
@@ -24,6 +28,7 @@ offset_left = 840.0
 offset_top = 597.0
 offset_right = 915.0
 offset_bottom = 638.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0fs2t")
 icon = ExtResource("3_t4fgf")
 flat = true
 
@@ -33,6 +38,7 @@ offset_left = 1024.0
 offset_top = 597.0
 offset_right = 1079.0
 offset_bottom = 638.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kg5hl")
 icon = ExtResource("4_wrqv0")
 flat = true
 
