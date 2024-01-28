@@ -6,7 +6,7 @@ var messager = preload('res://src//Messager/messager.tscn')
 var hud_preload = preload("res://src/hud.tscn")
 
 var rng = RandomNumberGenerator.new()
-var hud
+var hud # HUD du jeux (barre de rire)
 
 var child_count
 const bananeNodeName = "Banane"
@@ -16,7 +16,7 @@ var confirmQuitCheck = true
 
 var probaSpawn = 0.05
 var nbSpawned = 0
-const lossRate = 18
+const lossRate = 15
 
 func addLaugh(toAdd):
 	hud.addLaugh(toAdd)
@@ -57,6 +57,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	hud.subLaugh(probaSpawn/lossRate)
+	king_anim(hud.currentLaugh)
 	pass
 
 func subscribeCancelQuit():
@@ -67,4 +68,11 @@ func _input(event):
 		var confirmQuitInstance = confirmQuit.instantiate()
 		add_child(confirmQuitInstance)
 		confirmQuitCheck = false
-
+		
+func king_anim(currentLaugh):
+	if currentLaugh > 75 :
+		$Roi.king_anim_laugh()
+	elif currentLaugh < 20:
+		$Roi.king_anim_mad()
+	else:
+		$Roi.king_anim_default()
