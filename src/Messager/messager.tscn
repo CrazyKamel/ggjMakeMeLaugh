@@ -1,8 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnwlnkmeirr0s"]
+[gd_scene load_steps=20 format=3 uid="uid://bnwlnkmeirr0s"]
 
 [ext_resource type="Script" path="res://src/Messager/messager.gd" id="1_8vi8r"]
 [ext_resource type="Texture2D" uid="uid://wleae1qvofqe" path="res://media/armorguy.png" id="2_omaqo"]
 [ext_resource type="Texture2D" uid="uid://rq2hu7h8o8n4" path="res://media/messagerBN.png" id="3_hibet"]
+[ext_resource type="Texture2D" uid="uid://cgafeepvvu7pd" path="res://media/emotionbubble_happy.png" id="4_26iro"]
+[ext_resource type="Texture2D" uid="uid://dnycr0dv7eqp6" path="res://media/emotionbubble_angry.png" id="5_4ncwb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxf40"]
 atlas = ExtResource("2_omaqo")
@@ -134,7 +136,7 @@ metadata/_edit_lock_ = true
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_i4cwn")
-animation = &"bn_grabbed"
+animation = &"bn_walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8.5, 9.5)
@@ -144,6 +146,18 @@ metadata/_edit_group_ = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, 0.5)
 scale = Vector2(9.10001, 9.25)
+
+[node name="bubble_happy" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-8, -68.3571)
+scale = Vector2(3.71429, 3.71429)
+texture = ExtResource("4_26iro")
+
+[node name="bubble_angry" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-8, -68.3571)
+scale = Vector2(3.71429, 3.71429)
+texture = ExtResource("5_4ncwb")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

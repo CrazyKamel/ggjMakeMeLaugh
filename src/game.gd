@@ -14,7 +14,7 @@ const messWidth = 128
 const messHeight = 128
 var confirmQuitCheck = true
 
-var probaSpawn = 0.9
+var probaSpawn = 0.1
 var nbSpawned = 0
 
 func addLaugh(toAdd):
@@ -56,7 +56,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	hud.subLaugh(probaSpawn/4)
+	hud.subLaugh(probaSpawn/10)
 	pass
 
 func subscribeCancelQuit():

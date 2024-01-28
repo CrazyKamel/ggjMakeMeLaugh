@@ -10,7 +10,14 @@ var velocity # Vecteur vitesse du messager à la frame présente
 var norme
 var vecteur_direction
 
+var happyBubbleSprite
+var angryBubbleSprite
+
 var position_visee = Vector2(960, 540)
+var starting_pos
+var aller = true
+var tempo = 100
+var frozen = false
 
 var sens # 0 = gauche ; 1 = droite
 
@@ -24,6 +31,11 @@ var state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	happyBubbleSprite = $bubble_happy
+	angryBubbleSprite = $bubble_angry
+	
+	starting_pos = Vector2(self.position.x * 1.3, self.position.y)
+	
 	screen_size = get_viewport_rect().size # Récupère la taille de la fenêtre
 	
 	$AnimatedSprite2D.play() # lance l'animation
@@ -39,48 +51,65 @@ func _ready():
 	else: #0.0 - 0.3
 		state = 2 #knight
 		
-	print(state)
-		
 		
 	match state:
 		0:
 			$AnimatedSprite2D.animation = "walk" #change to GOOD messager animation
+			angryBubbleSprite.hide()
 		1:
 			$AnimatedSprite2D.animation = "walk" #change to BAD messager animation
+			happyBubbleSprite.hide()
 		2:
 			$AnimatedSprite2D.animation = "walk" #change to KNIGHT messager animation
+			happyBubbleSprite.hide()
 	set_animation(state, "grabbed")
 
 func _physics_process(delta):
-	if selected:
-		set_animation(state, "grabbed")
-		pos_1 = pos_2
-		pos_2 = position
-		last_velocity = get_speed(pos_1, pos_2, delta)
-		
-		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
-		
-		#last_velocity = Vector2.ZERO
-	elif abs(last_velocity.length()) > start_speed*1.05:
-		set_animation(state, "grabbed")
-		position += last_velocity*delta
-		last_velocity = last_velocity-((last_velocity+start_velocity)/15)
-	else:
-		set_animation(state, "walk")
-		vecteur_direction = calc_direction()
-		velocity = vecteur_direction * start_speed
-		self.position = self.position + velocity*delta
+	if not frozen:
+		if selected:
+			set_animation(state, "grabbed")
+			pos_1 = pos_2
+			pos_2 = position
+			last_velocity = get_speed(pos_1, pos_2, delta)
+			
+			global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
+			
+			#last_velocity = Vector2.ZERO
+		elif abs(last_velocity.length()) > start_speed*1.05:
+			set_animation(state, "grabbed")
+			position += last_velocity*delta
+			last_velocity = last_velocity-((last_velocity+start_velocity)/15)
+		else:
+			set_animation(state, "walk")
+			vecteur_direction = calc_direction()
+			velocity = vecteur_direction * start_speed
+			self.position = self.position + velocity*delta
 
 func _process(delta):
-	if abs((position_visee - self.position).x) < 100 and abs((position_visee - self.position).y) < 100 :
+	if abs((position_visee - self.position).x) < 100 and abs((position_visee - self.position).y) < 100 and aller:
 		match state:
 			0:
-				get_parent().addLaugh(0.5)
+				get_parent().addLaugh(0.7)
+				happyBubbleSprite.hide()
 			1:
 				get_parent().subLaugh(0.4)
+				angryBubbleSprite.hide()
 			2:
 				get_parent().subLaugh(0.8)
-		self.queue_free()
+				angryBubbleSprite.hide()
+		
+		aller = false
+		frozen = true
+	elif not aller:
+		tempo -= 1
+		if tempo <= 0:
+			position_visee = starting_pos
+			frozen = false
+			
+	
+		
+		#self.queue_free()
+		
 
 ### Tools
 func get_speed(pos_1:Vector2, pos_2:Vector2, delta):
@@ -127,4 +156,5 @@ func _input(event): # Quand on relache le clique gauche
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	print("left")
 	queue_free()
