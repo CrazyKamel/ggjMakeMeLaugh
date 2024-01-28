@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=8 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_os583"]
 [ext_resource type="Texture2D" uid="uid://qqv0qfwk4s7t" path="res://media/titlebgex.png" id="2_4kasm"]
 [ext_resource type="Texture2D" uid="uid://bc0jfv1osexru" path="res://media/titleoptionex.png" id="2_cwmrq"]
 [ext_resource type="Texture2D" uid="uid://dbcywqcuvyaw2" path="res://media/titlequitex.png" id="3_pbpau"]
 [ext_resource type="Texture2D" uid="uid://v2jswbdb2ixx" path="res://media/titlestartex.png" id="4_purb0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ne22n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_isw04"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_os583")
@@ -36,6 +40,7 @@ offset_right = 102.0
 offset_bottom = 387.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ne22n")
 icon = ExtResource("3_pbpau")
 flat = true
 
@@ -51,6 +56,7 @@ offset_right = 143.0
 offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_isw04")
 icon = ExtResource("4_purb0")
 flat = true
 
