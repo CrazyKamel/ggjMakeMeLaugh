@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bukt6wbc4moqv"]
+[gd_scene load_steps=8 format=3 uid="uid://bukt6wbc4moqv"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_1ccu5"]
 [ext_resource type="PackedScene" uid="uid://uvguanklbvnk" path="res://src/banane_stuff.tscn" id="2_mto8x"]
 [ext_resource type="Texture2D" uid="uid://dyna6jbqr4rbt" path="res://media/salle.png" id="3_wh6py"]
+[ext_resource type="PackedScene" uid="uid://48euubrhv3r" path="res://src/Roi/Roi.tscn" id="4_rg8nn"]
 
 [sub_resource type="Gradient" id="Gradient_ylerd"]
 
@@ -45,6 +46,9 @@ shape = SubResource("CapsuleShape2D_6tf8n")
 [node name="Banane" parent="." instance=ExtResource("2_mto8x")]
 position = Vector2(1050, 900)
 scale = Vector2(1.3, 1.3)
+
+[node name="Roi" parent="." instance=ExtResource("4_rg8nn")]
+position = Vector2(965, 441)
 
 [connection signal="area_entered" from="Area2D" to="Banane" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="Banane" method="_on_area_2d_area_exited"]

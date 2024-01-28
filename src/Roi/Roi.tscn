@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://48euubrhv3r"]
+
+[ext_resource type="Script" path="res://src/Roi/Roi.gd" id="1_qm0o3"]
+[ext_resource type="Texture2D" uid="uid://dk18ublb3lwpc" path="res://media/roi.png" id="2_x8dhi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nx1r1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x8dhi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7huu8"]
+radius = 23.5294
+height = 82.3529
+
+[node name="Roi" type="Area2D"]
+script = ExtResource("1_qm0o3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.16, 0.16)
+sprite_frames = SubResource("SpriteFrames_nx1r1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.17, 0.17)
+shape = SubResource("CapsuleShape2D_7huu8")
