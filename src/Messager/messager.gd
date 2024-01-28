@@ -2,6 +2,8 @@ extends Area2D
 
 enum State {GOOD, BAD, KNIGHT}
 
+var probaSpawnTypes = {"good":0.3,"bad": 0.6,"knight": 0.1} # GOOD, BAD, KNIGHT
+
 @export var start_speed = 100 #Vitesse du messager à l'origine
 var start_velocity # Vecteur vitesse du messager à l'origine
 var velocity # Vecteur vitesse du messager à la frame présente
@@ -27,7 +29,17 @@ func _ready():
 	vecteur_direction = calc_direction()
 	start_velocity = vecteur_direction * start_speed # set la vitesse à l'origine
 	velocity = start_velocity # set la vitesse à la vitesse d'origine
-	state = Global.rng.randi_range(0,2)
+	var r = Global.rng.randf()
+	if r >= probaSpawnTypes["bad"]: #0.6 - 1
+		state = 1 #bad
+	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["knight"]: #0.3 - 0.6
+		state = 0 #good
+	else: #0.0 - 0.3
+		state = 2 #knight
+		
+	print(state)
+		
+		
 	match state:
 		0:
 			$AnimatedSprite2D.animation = "walk" #change to GOOD messager animation
@@ -58,7 +70,13 @@ func _physics_process(delta):
 
 func _process(delta):
 	if abs((position_visee - self.position).x) < 100 and abs((position_visee - self.position).y) < 100 :
-		get_parent().addLaugh(0.5)
+		match state:
+			0:
+				get_parent().addLaugh(0.5)
+			1:
+				get_parent().subLaugh(0.4)
+			2:
+				get_parent().subLaugh(0.8)
 		self.queue_free()
 
 ### Tools
