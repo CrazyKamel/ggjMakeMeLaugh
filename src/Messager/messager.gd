@@ -106,8 +106,6 @@ func _process(delta):
 			position_visee = starting_pos
 			frozen = false
 			
-	
-		
 		#self.queue_free()
 		
 
