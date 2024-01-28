@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://8yp0xp61jmpt"]
+
+[ext_resource type="Script" path="res://src/hud.gd" id="1_bb4m7"]
+[ext_resource type="Texture2D" uid="uid://mf41c5lyj0sf" path="res://media/laughbar.png" id="2_btn4s"]
+[ext_resource type="Texture2D" uid="uid://cc0cxgm060ciy" path="res://media/curseur.png" id="3_p4t4l"]
+
+[node name="Hud" type="Node2D"]
+script = ExtResource("1_bb4m7")
+
+[node name="LaughBar" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(975, 98)
+scale = Vector2(7.83017, 7.26563)
+texture = ExtResource("2_btn4s")
+
+[node name="Curseur" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1425, 99)
+scale = Vector2(6.625, 5.28125)
+texture = ExtResource("3_p4t4l")
