@@ -13,7 +13,7 @@ var vecteur_direction
 var happyBubbleSprite
 var angryBubbleSprite
 
-var position_visee = Vector2(960, 540)
+var position_visee = Vector2(960, 440)
 var starting_pos
 var aller = true
 var tempo = 100
