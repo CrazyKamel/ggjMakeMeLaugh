@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvidscxl2pcqh"]
 
 [ext_resource type="Script" path="res://src/banane_ingame.gd" id="1_acwjw"]
-[ext_resource type="Texture2D" uid="uid://bc2speym7wxw" path="res://media/tempbanana.png" id="2_22u4w"]
+[ext_resource type="Texture2D" uid="uid://c3aks23lqcah4" path="res://media/banane.png" id="2_mnv4f"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8y3ys"]
-radius = 45.0111
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u72vg"]
+size = Vector2(45, 28)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(0, 3)
@@ -13,11 +13,13 @@ script = ExtResource("1_acwjw")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1.52588e-05, -1)
-scale = Vector2(4.34375, 4.008)
-texture = ExtResource("2_22u4w")
+scale = Vector2(3, 3)
+texture = ExtResource("2_mnv4f")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 3)
-shape = SubResource("CircleShape2D_8y3ys")
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_u72vg")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
