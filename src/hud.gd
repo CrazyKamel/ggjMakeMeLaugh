@@ -5,6 +5,9 @@ var endBar
 var currentLaugh = 50.0
 
 func updateCurseur():
+	if currentLaugh < 0:
+		#Animation du roi qui est en colère
+		Global.goto_scene("res://src/Interface/endgame.tscn")
 	if currentLaugh > 100: currentLaugh = 100
 	if currentLaugh <= 0: currentLaugh = 0
 	$Curseur.position.x = ((endBar-startBar)/100)*currentLaugh + startBar
