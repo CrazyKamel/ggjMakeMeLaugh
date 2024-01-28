@@ -22,7 +22,7 @@ func addLaugh(toAdd):
 
 func subLaugh(toSub):
 	hud.subLaugh(toSub)
-
+	
 func inst(pos):
 	var instance = messager.instantiate()
 	instance.position = pos
