@@ -10,6 +10,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kg5hl"]
 
 [node name="ConfirmQuit" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +24,7 @@ position = Vector2(960, 597)
 texture = ExtResource("2_sl7l4")
 
 [node name="Yes" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 840.0
 offset_top = 597.0
@@ -33,6 +35,7 @@ icon = ExtResource("3_t4fgf")
 flat = true
 
 [node name="No" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 597.0
