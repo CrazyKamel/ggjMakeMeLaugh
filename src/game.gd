@@ -14,8 +14,9 @@ const messWidth = 128
 const messHeight = 128
 var confirmQuitCheck = true
 
-var probaSpawn = 0.1
+var probaSpawn = 0.05
 var nbSpawned = 0
+const lossRate = 18
 
 func addLaugh(toAdd):
 	hud.addLaugh(toAdd)
@@ -37,7 +38,7 @@ func _timeout() -> void:
 		inst(Vector2(x,y))
 		nbSpawned+=1
 		if nbSpawned%20==0:
-			probaSpawn+=0.01
+			probaSpawn+=0.005
 			print(probaSpawn," ", nbSpawned)
 
 func _init():
@@ -45,7 +46,7 @@ func _init():
 	add_child(timer)
 	timer.autostart = true
 	timer.one_shot = false
-	timer.wait_time = 0.1
+	timer.wait_time = 0.05
 	timer.connect("timeout", self._timeout)
 
 # Called when the node enters the scene tree for the first time.
@@ -55,7 +56,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	hud.subLaugh(probaSpawn/10)
+	hud.subLaugh(probaSpawn/lossRate)
 	pass
 
 func subscribeCancelQuit():
