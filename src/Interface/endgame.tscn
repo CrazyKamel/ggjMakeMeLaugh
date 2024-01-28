@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwxtjjg2ajfsj"]
+[gd_scene load_steps=7 format=3 uid="uid://bwxtjjg2ajfsj"]
 
 [ext_resource type="Script" path="res://src/Interface/endgame.gd" id="1_dny7r"]
 [ext_resource type="Texture2D" uid="uid://d11p4jdyec8va" path="res://media/gobgex.png" id="2_way1i"]
 [ext_resource type="Texture2D" uid="uid://c1edqfujya7wb" path="res://media/gorestartex.png" id="3_648aj"]
 [ext_resource type="Texture2D" uid="uid://cuwdt8hhb27uc" path="res://media/gomainmenuex.png" id="4_fjtr0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3lli"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tvsof"]
 
 [node name="Endgame" type="Node"]
 script = ExtResource("1_dny7r")
@@ -24,6 +28,7 @@ offset_right = 292.0
 offset_bottom = 359.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g3lli")
 icon = ExtResource("3_648aj")
 flat = true
 
@@ -32,6 +37,7 @@ offset_left = 638.0
 offset_top = 923.0
 offset_right = 1256.0
 offset_bottom = 1040.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tvsof")
 icon = ExtResource("4_fjtr0")
 flat = true
 
