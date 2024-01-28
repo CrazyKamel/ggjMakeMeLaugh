@@ -55,6 +55,7 @@ func _ready():
 		happyBubbleSprite.hide()
 		glideForce = glideForceArmor
 		start_speed = start_speed_armor
+		$AudioStreamPlayer2D.play() #plays metal sound for ~3secs (can be changed)
 	elif r < probaSpawnTypes["bad"] and r > probaSpawnTypes["good"]: #0.35 - 0.9
 		state = 1 #bad
 		happyBubbleSprite.hide()
@@ -63,9 +64,8 @@ func _ready():
 	else: #0 - 0.35
 		state = 0 #good
 		angryBubbleSprite.hide()
-		glideForce = glideForceNormal
 		start_speed = start_speed_messager
-	
+		glideForce = glideForceNormal
 	
 	vecteur_direction = calc_direction()
 	start_velocity = vecteur_direction * start_speed # set la vitesse à l'origine
@@ -103,12 +103,16 @@ func _process(delta):
 			0:
 				get_parent().addLaugh(damage["good"])
 				happyBubbleSprite.hide()
+				
+				$AudioStreamPlayer2D5.play()
 			1:
 				get_parent().subLaugh(damage["bad"])
 				angryBubbleSprite.hide()
+				$AudioStreamPlayer2D3.play()
 			2:
 				get_parent().subLaugh(damage["knight"])
 				angryBubbleSprite.hide()
+				$AudioStreamPlayer2D2.play()
 		
 		aller = false
 		set_animation(state, "stopped")
@@ -172,7 +176,8 @@ func _input(event): # Quand on relache le clique gauche
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			selected = false
-
+			if abs(last_velocity.length()) >= start_speed*1.1:
+				$AudioStreamPlayer2D4.play()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
