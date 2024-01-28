@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="ggJMakeMeLaugh"
+config/version="1.0"
 run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://media/icon.svg"
+config/icon="res://media/roipascontent.png"
+config/windows_native_icon="res://media/icon.ico"
 
 [autoload]
 
