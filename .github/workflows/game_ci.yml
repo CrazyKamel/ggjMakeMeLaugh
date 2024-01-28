@@ -56,7 +56,6 @@ jobs:
           path: game_web.zip
   linux:
     runs-on: ubuntu-latest
-    if: ${{ false }}  # disable for now
     permissions:
       contents: write
 
